@@ -26,9 +26,9 @@ export default function ProfilePage() {
   ]
 
   const favoriteItems = [
-    { id: 1, name: "Wireless Headphones", price: 199.99, image: "/placeholder.svg?height=100&width=100", quantity: 2 },
-    { id: 2, name: "Smart Watch", price: 299.99, image: "/placeholder.svg?height=100&width=100", quantity: 1 },
-    { id: 3, name: "Bluetooth Speaker", price: 149.99, image: "/placeholder.svg?height=100&width=100", quantity: 3 },
+    { id: "1", name: "Wireless Headphones", price: 199.99, image: "/placeholder.svg?height=100&width=100", quantity: 2 },
+    { id: "2", name: "Smart Watch", price: 299.99, image: "/placeholder.svg?height=100&width=100", quantity: 1 },
+    { id: "3", name: "Bluetooth Speaker", price: 149.99, image: "/placeholder.svg?height=100&width=100", quantity: 3 },
   ]
 
   const handleSave = () => {
@@ -249,7 +249,15 @@ export default function ProfilePage() {
   )
 }
 
-function FavoriteItem({ item }: { item: any }) {
+type FavoriteItemType = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+
+function FavoriteItem({ item }: { item: FavoriteItemType }) {
   const [quantity, setQuantity] = useState(item.quantity)
 
   const updateQuantity = (change: number) => {
@@ -259,7 +267,7 @@ function FavoriteItem({ item }: { item: any }) {
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 border rounded-lg">
-      <img src={item.image || "/placeholder.svg"} alt={item.name} className="w-20 h-20 object-cover rounded" />
+      {/* <img src={item.image || "/placeholder.svg"} alt={item.name} className="w-20 h-20 object-cover rounded" /> */}
       <div className="flex-1 space-y-1">
         <h3 className="font-semibold">{item.name}</h3>
         <p className="text-lg font-bold text-gray-900">${item.price}</p>

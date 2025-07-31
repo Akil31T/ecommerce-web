@@ -73,7 +73,7 @@ export default function ReturnsPage() {
 
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900">Return Items</h1>
-            <p className="text-gray-600 mt-2">Select items you'd like to return and tell us why</p>
+            <p className="text-gray-600 mt-2">Select items youd like to return and tell us why</p>
           </div>
 
           <div className="space-y-6">
@@ -118,11 +118,11 @@ export default function ReturnsPage() {
                           onChange={() => handleItemSelection(item.id)}
                           className="w-4 h-4"
                         />
-                        <img
+                        {/* <img
                           src="/placeholder.svg?height=60&width=60"
                           alt={item.name}
                           className="w-15 h-15 object-cover rounded"
-                        />
+                        /> */}
                         <div className="flex-1">
                           <h4 className="font-semibold">{item.name}</h4>
                           <p className="text-gray-600">${item.price}</p>

@@ -27,11 +27,11 @@ export default function ProductCard({ product }: { product: Product }) {
     <div className="group bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden">
-        <img
+        {/* <img
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+        /> */}
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">

@@ -30,11 +30,11 @@ export default function Hero() {
           {/* Hero Image */}
           <div className="relative">
             <div className="aspect-square md:aspect-[4/3] lg:aspect-square rounded-lg overflow-hidden">
-              <img
+              {/* <img
                 src="/placeholder.svg?height=600&width=600"
                 alt="Hero Product"
                 className="w-full h-full object-cover"
-              />
+              /> */}
             </div>
             {/* Floating card */}
             <div className="absolute -bottom-4 -left-4 bg-white text-gray-900 p-4 rounded-lg shadow-lg">

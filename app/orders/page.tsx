@@ -167,11 +167,11 @@ export default function OrdersPage() {
                   <div className="space-y-4">
                     {order.items.map((item, index) => (
                       <div key={index} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <img
+                        {/* <img
                           src={item.image || "/placeholder.svg"}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded"
-                        />
+                        /> */}
                         <div className="flex-1">
                           <h4 className="font-semibold">{item.name}</h4>
                           <p className="text-gray-600">Quantity: {item.quantity}</p>

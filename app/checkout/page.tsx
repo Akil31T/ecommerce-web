@@ -32,7 +32,7 @@ export default function CheckoutPage() {
   ]
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const shipping = 0
+  const shipping: number = 0
   const tax = subtotal * 0.08
   const total = subtotal + shipping + tax
 
@@ -183,8 +183,8 @@ export default function CheckoutPage() {
                           Credit/Debit Card
                         </Label>
                         <div className="flex gap-2">
-                          <img src="/placeholder.svg?height=24&width=38" alt="Visa" className="h-6" />
-                          <img src="/placeholder.svg?height=24&width=38" alt="Mastercard" className="h-6" />
+                          {/* <img src="/placeholder.svg?height=24&width=38" alt="Visa" className="h-6" />
+                          <img src="/placeholder.svg?height=24&width=38" alt="Mastercard" className="h-6" /> */}
                         </div>
                       </div>
                       <div className="flex items-center space-x-2 p-4 border rounded-lg">
@@ -272,11 +272,11 @@ export default function CheckoutPage() {
                 <CardContent className="space-y-4">
                   {cartItems.map((item) => (
                     <div key={item.id} className="flex items-center gap-3">
-                      <img
+                      {/* <img
                         src={item.image || "/placeholder.svg"}
                         alt={item.name}
                         className="w-12 h-12 object-cover rounded"
-                      />
+                      /> */}
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
                         <p className="text-gray-600 text-sm">Qty: {item.quantity}</p>
