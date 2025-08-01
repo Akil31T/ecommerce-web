@@ -1,27 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { Heart, ShoppingCart, Star } from "lucide-react"
+import { Heart, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+// import { Badge } from "@/components/ui/badge"
+import { Product } from "@/lib/types"
 
-interface Product {
-  id: number
-  name: string
-  price: number
-  originalPrice: number | null
-  image: string
-  rating: number
-  reviews: number
-  badge: string | null
-}
+
 
 export default function ProductCard({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false)
 
-  const discountPercentage = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-    : 0
+  // const discountPercentage = product.originalPrice
+  //   ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  //   : 0
 
   return (
     <div className="group bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
@@ -34,10 +26,10 @@ export default function ProductCard({ product }: { product: Product }) {
         /> */}
 
         {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+        {/* <div className="absolute top-3 left-3 flex flex-col gap-2">
           {product.badge && <Badge className="bg-red-500 hover:bg-red-600">{product.badge}</Badge>}
           {discountPercentage > 0 && <Badge variant="secondary">-{discountPercentage}%</Badge>}
-        </div>
+        </div> */}
 
         {/* Wishlist Button */}
         <Button
@@ -74,26 +66,26 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* Rating */}
         <div className="flex items-center gap-2 mb-3">
           <div className="flex items-center">
-            {[...Array(5)].map((_, i) => (
+            {/* {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
                 className={`h-4 w-4 ${
                   i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"
                 }`}
               />
-            ))}
+            ))} */}
           </div>
           <span className="text-sm text-gray-600">
-            {product.rating} ({product.reviews})
+            {/* {product.rating} ({product.reviews}) */}
           </span>
         </div>
 
         {/* Price */}
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold text-gray-900">${product.price}</span>
-          {product.originalPrice && (
+          {/* {product.originalPrice && (
             <span className="text-sm text-gray-500 line-through">${product.originalPrice}</span>
-          )}
+          )} */}
         </div>
       </div>
     </div>

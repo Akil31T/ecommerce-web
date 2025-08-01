@@ -1,90 +1,32 @@
-import { Button } from "@/components/ui/button"
-import ProductCard from "./ProductCard"
+'use client'
+import React, { useEffect, useState } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 199.99,
-    originalPrice: 249.99,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.5,
-    reviews: 128,
-    badge: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 299.99,
-    originalPrice: null,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.8,
-    reviews: 89,
-    badge: "New",
-  },
-  {
-    id: 3,
-    name: "Laptop Backpack",
-    price: 79.99,
-    originalPrice: 99.99,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.3,
-    reviews: 256,
-    badge: null,
-  },
-  {
-    id: 4,
-    name: "Bluetooth Speaker",
-    price: 149.99,
-    originalPrice: null,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.6,
-    reviews: 94,
-    badge: "Popular",
-  },
-  {
-    id: 5,
-    name: "Fitness Tracker",
-    price: 129.99,
-    originalPrice: 159.99,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.4,
-    reviews: 167,
-    badge: null,
-  },
-  {
-    id: 6,
-    name: "Wireless Charger",
-    price: 49.99,
-    originalPrice: null,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.2,
-    reviews: 203,
-    badge: null,
-  },
-  {
-    id: 7,
-    name: "Gaming Mouse",
-    price: 89.99,
-    originalPrice: 119.99,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.7,
-    reviews: 145,
-    badge: "Sale",
-  },
-  {
-    id: 8,
-    name: "USB-C Hub",
-    price: 69.99,
-    originalPrice: null,
-    image: "/placeholder.svg?height=300&width=300",
-    rating: 4.1,
-    reviews: 78,
-    badge: null,
-  },
-]
+import { Button } from "@/components/ui/button";
+import ProductCard from "./ProductCard";
+import api from "@/lib/api";
+import { Product } from "@/lib/types";
 
 export default function ProductGrid() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const fetchProducts = async () => {
+    const response = await api.get("/products");
+    console.log("Fetched products:", response.data.data);
+    setProducts(response.data.data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const categories = Array.from(new Set(products.map((p) => p.category)));
+
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory
+    ? products.filter((p) => p.category === selectedCategory)
+    : products;
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -98,22 +40,36 @@ export default function ProductGrid() {
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          <button className="px-6 py-2 bg-gray-900 text-white rounded-full font-medium">All Products</button>
-          <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 border border-gray-200">
-            Electronics
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-6 py-2 rounded-full font-medium ${
+              selectedCategory === null
+                ? "bg-gray-900 text-white"
+                : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-100"
+            }`}
+          >
+            All Products
           </button>
-          <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 border border-gray-200">
-            Accessories
-          </button>
-          <button className="px-6 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 border border-gray-200">
-            Gaming
-          </button>
+
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2 rounded-full font-medium ${
+                selectedCategory === category
+                  ? "bg-gray-900 text-white"
+                  : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-100"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {filteredProducts.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
 
@@ -125,5 +81,5 @@ export default function ProductGrid() {
         </div>
       </div>
     </section>
-  )
+  );
 }
