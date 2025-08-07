@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import ProductCard from "./ProductCard";
-import api from "@/lib/api";
 import { Product } from "@/lib/types";
 import apiCall from "@/lib/api";
 import { API_ENDPOINTS } from "@/lib/constant";
