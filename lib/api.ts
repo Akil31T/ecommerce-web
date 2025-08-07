@@ -1,12 +1,14 @@
 // utils/api.ts
-import axios from "axios";
+import axios, { Method } from "axios";
+import { API_BASE_URL } from "./constant";
 
 const api = axios.create({
-  baseURL: 'https://ecommerce-api-nine-gilt.vercel.app/api',
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json ",
   },
 });
+console.log("API Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
 
 api.interceptors.response.use(
@@ -27,7 +29,9 @@ api.interceptors.response.use(
   }
 );
 
-const apiCall = async (endpoint: any, method: any, data?: any) => {
+const apiCall = async (endpoint: string,
+  method: Method,
+  data?: string) => {
   try {
     const response = await api({
       url: endpoint,
