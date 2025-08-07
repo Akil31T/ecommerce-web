@@ -5,22 +5,24 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "./ProductCard";
 import api from "@/lib/api";
 import { Product } from "@/lib/types";
+import apiCall from "@/lib/api";
+import { API_ENDPOINTS } from "@/lib/constant";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const fetchProducts = async () => {
-    const response = await api.get("/products");
-    console.log("Fetched products:", response.data.data);
-    setProducts(response.data.data);
+    const response = await apiCall(API_ENDPOINTS.PRODUCTS, "GET");
+    console.log("Fetched products:", response.data);
+    setProducts(response.data);
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const categories = Array.from(new Set(products.map((p) => p.category)));
+  const categories =(products?.map((p) => p.category));
 
   // Filter products based on selected category
   const filteredProducts = selectedCategory
@@ -55,7 +57,7 @@ export default function ProductGrid() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full font-medium ${
+              className={`px-6 py-2 rounded-full font-medium capitalize ${
                 selectedCategory === category
                   ? "bg-gray-900 text-white"
                   : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-100"
