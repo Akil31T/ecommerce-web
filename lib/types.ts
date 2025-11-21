@@ -21,3 +21,8 @@ export interface Product {
   quantity: string; // to be converted to number
   inStock: boolean;
 };    
+
+export interface loginPayload {
+  username: string;
+  password: string;
+} 
