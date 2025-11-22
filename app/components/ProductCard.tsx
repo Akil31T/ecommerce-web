@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 // import { Badge } from "@/components/ui/badge"
 import { Product } from "@/lib/types";
 import SignUp from "./SignUp";
-
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 export default function ProductCard({ product }: { product: Product }) {
+  const router = useRouter();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -26,7 +28,7 @@ export default function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="group bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-200">
+    <div className="group rounded-lg bg-white text-[var(--color-text)] border border-[var(--color-primary)] hover:border-[var(--color-secondary)] shadow-sm hover:shadow-4xl transition-all duration-300 overflow-hidden hover:scale-105">
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden">
         <SignUp open={open} setOpen={setOpen} />
@@ -35,12 +37,6 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         /> */}
-
-        {/* Badges */}
-        {/* <div className="absolute top-3 left-3 flex flex-col gap-2">
-          {product.badge && <Badge className="bg-red-500 hover:bg-red-600">{product.badge}</Badge>}
-          {discountPercentage > 0 && <Badge variant="secondary">-{discountPercentage}%</Badge>}
-        </div> */}
 
         {/* Wishlist Button */}
         <Button
@@ -55,9 +51,9 @@ export default function ProductCard({ product }: { product: Product }) {
         </Button>
 
         {/* Quick Add to Cart - appears on hover */}
-        <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-3 left-3 right-3 ">
           <Button
-            className="w-full cursor-pointer bg-gray-900 hover:bg-gray-800"
+            className="w-full cursor-pointer bg-black text-white"
             onClick={() => {
               setOpen(true);
             }}
@@ -65,12 +61,20 @@ export default function ProductCard({ product }: { product: Product }) {
             <ShoppingCart className="h-4 w-4 mr-2" />
             Add to Cart
           </Button>
+          <Button
+            className="w-full mt-2 cursor-pointer bg-white text-black border border-black hover:bg-gray-100"
+            onClick={() => {
+              router.push('/Productview');
+            }}
+          >
+            View Details
+          </Button>
         </div>
       </div>
 
       {/* Product Info */}
       <div className="p-4">
-        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-[var(--text-color)]">
           {product.name}
         </h3>
 
@@ -101,6 +105,6 @@ export default function ProductCard({ product }: { product: Product }) {
           )} */}
         </div>
       </div>
-    </div>
+      </div>
   );
 }

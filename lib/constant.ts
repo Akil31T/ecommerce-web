@@ -7,3 +7,7 @@ export const API_ENDPOINTS = {
     ORDERS: '/orders',
     login: '/users/login',
 } 
+
+const THEME = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
+
+export const DEFAULT_THEME = THEME === "dark" ? "dark" : "light";
