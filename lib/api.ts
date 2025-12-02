@@ -76,7 +76,7 @@ api.interceptors.response.use(
 const apiCall = async (
   endpoint: string,
   method: Method,
-  data?: any,           // can be JSON or FormData
+  data?: Record<string, unknown> | FormData,           // can be JSON or FormData
   customHeaders: Record<string, string> = {}
 ) => {
   try {

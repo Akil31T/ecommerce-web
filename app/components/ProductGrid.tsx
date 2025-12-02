@@ -6,7 +6,6 @@ import ProductCard from "./ProductCard";
 import { Product } from "@/lib/types";
 import apiCall from "@/lib/api";
 import { API_ENDPOINTS } from "@/lib/constant";
-import { ca } from "zod/v4/locales";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([]);
