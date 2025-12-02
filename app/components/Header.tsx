@@ -28,7 +28,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-sky-400">ShopHub</h1>
+            <h1 className="text-2xl font-bold text-sky-400">TopShop</h1>
           </div>
 
           {/* Desktop Navigation */}

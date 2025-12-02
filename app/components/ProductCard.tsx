@@ -8,6 +8,8 @@ import { Product } from "@/lib/types";
 import SignUp from "./SignUp";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 export default function ProductCard({ product }: { product: Product }) {
   const router = useRouter();
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -26,16 +28,23 @@ export default function ProductCard({ product }: { product: Product }) {
       console.log("Added to favorites:", product.name);
     }
   };
+  console.log(product.image, "AKIL  ");
 
   return (
     <div className="group rounded-lg bg-white text-[var(--color-text)] border border-[var(--color-primary)] hover:border-[var(--color-secondary)] shadow-sm hover:shadow-4xl transition-all duration-300 overflow-hidden hover:scale-105">
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden">
         <SignUp open={open} setOpen={setOpen} />
-        {/* <img
-          src={product.image || "/placeholder.svg"}
+        <img
+          src={product.image || ""}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        {/* <Image
+          src={product.image || "/placeholder.svg"}
+          alt={product.name}
+          width={300}
+          height={300}
         /> */}
 
         {/* Wishlist Button */}
@@ -64,7 +73,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <Button
             className="w-full mt-2 cursor-pointer bg-white text-black border border-black hover:bg-gray-100"
             onClick={() => {
-              router.push('/Productview');
+              router.push("/Productview");
             }}
           >
             View Details
@@ -105,6 +114,6 @@ export default function ProductCard({ product }: { product: Product }) {
           )} */}
         </div>
       </div>
-      </div>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+'use client';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./globals.css";
@@ -9,13 +10,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
          <ThemeProvider>
           <Header />
           {children}
-          {/* <Toaster /> */}
+          {/* <Toaster /> */} 
           <Footer/>
         </ThemeProvider>
       </body>
