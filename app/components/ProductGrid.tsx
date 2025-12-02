@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -6,22 +6,27 @@ import ProductCard from "./ProductCard";
 import { Product } from "@/lib/types";
 import apiCall from "@/lib/api";
 import { API_ENDPOINTS } from "@/lib/constant";
+import { ca } from "zod/v4/locales";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const fetchProducts = async () => {
-    const response = await apiCall(API_ENDPOINTS.PRODUCTS, "GET");
-    console.log("Fetched products:", response.data);
-    setProducts(response.data);
+    try {
+      const response = await apiCall(API_ENDPOINTS.PRODUCTS, "GET");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
-  const categories =(products?.map((p) => p.category));
+const categories = [...new Set(products.map((p) => p.category))];
+
 
   // Filter products based on selected category
   const filteredProducts = selectedCategory
@@ -29,13 +34,16 @@ export default function ProductGrid() {
     : products;
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our handpicked selection of premium products designed to enhance your lifestyle
+          <h2 className="text-3xl md:text-4xl font-bold text-[--text-color] mb-4">
+            Featured Products
+          </h2>
+          <p className="text-lg text-[--text-color] max-w-2xl mx-auto">
+            Discover our handpicked selection of premium products designed to
+            enhance your lifestyle
           </p>
         </div>
 
@@ -43,10 +51,10 @@ export default function ProductGrid() {
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <button
             onClick={() => setSelectedCategory(null)}
-            className={`px-6 py-2 rounded-full font-medium ${
+            className={`px-6 py-2 rounded-full font-medium cursor-pointer border border-gray-900 ${
               selectedCategory === null
-                ? "bg-gray-900 text-white"
-                : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-100"
+                ? "bg-primary text-[--text-color]"
+                : "bg-background text-[--text-color]  hover:bg-gray-100"
             }`}
           >
             All Products
@@ -56,10 +64,10 @@ export default function ProductGrid() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full font-medium capitalize ${
+              className={`px-6 py-2 rounded-full font-medium capitalize cursor-pointer border border-gray-900 ${
                 selectedCategory === category
-                  ? "bg-gray-900 text-white"
-                  : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-100"
+                  ? "bg-primary text-[--text-color]"
+                  : "bg-background text-[--text-color]  hover:bg-gray-100"
               }`}
             >
               {category}

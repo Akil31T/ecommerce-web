@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">ShopHub</h3>
+            <h3 className="text-xl font-bold">TopShop</h3>
             <p className="text-gray-400">
               Your one-stop destination for premium products and exceptional shopping experience.
             </p>
@@ -126,7 +126,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-gray-400" />
-                <span className="text-gray-400">support@shophub.com</span>
+                <span className="text-gray-400">support@TopShop.com</span>
               </div>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Footer() {
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">© 2024 ShopHub. All rights reserved.</p>
+            <p className="text-gray-400 text-sm">© 2024 TopShop. All rights reserved.</p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
