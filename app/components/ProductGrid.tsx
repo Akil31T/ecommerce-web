@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 import { Product } from "@/lib/types";
 import apiCall from "@/lib/api";
 import { API_ENDPOINTS } from "@/lib/constant";
+import HomeSlider from "./HomeSlider";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -35,19 +36,8 @@ const categories = [...new Set(products.map((p) => p.category))];
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[--text-color] mb-4">
-            Featured Products
-          </h2>
-          <p className="text-lg text-[--text-color] max-w-2xl mx-auto">
-            Discover our handpicked selection of premium products designed to
-            enhance your lifestyle
-          </p>
-        </div>
-
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <HomeSlider/>
+        <div className="flex flex-wrap justify-center gap-4 m-12">
           <button
             onClick={() => setSelectedCategory(null)}
             className={`px-6 py-2 rounded-full font-medium cursor-pointer border border-gray-900 ${

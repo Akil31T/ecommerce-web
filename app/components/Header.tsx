@@ -21,43 +21,14 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 bg-background p-2 border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-orange-200 p-2 border-b border-gray-200">
       {/* Main header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-sky-400">TopShop</h1>
+            <h1 className="text-2xl font-bold text-white">TopShop</h1>
           </div>
-
-          {/* Desktop Navigation */}
-          {/* <nav className="hidden lg:flex space-x-8">
-            <a
-              href="#"
-              className="text-[--text-color] hover:text-gray-900 font-medium"
-            >
-              Home
-            </a>
-          
-            <a
-              href="#"
-              className="text-[--text-color] hover:text-gray-900 font-medium"
-            >
-              Categories
-            </a>
-            <a
-              href="#"
-              className="text-[--text-color] hover:text-gray-900 font-medium"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className="text-[--text-color] hover:text-primary font-medium"
-            >
-              Contact
-            </a>
-          </nav> */}
 
           {/* Search bar - hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
@@ -77,13 +48,13 @@ export default function Header() {
             <Button variant="ghost" size="icon" className="md:hidden">
               <Search className="h-5 w-5" />
             </Button>
-            <Button
+            {/* <Button
             variant='secondary'
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2"
             >
               {theme === "dark" ? <Moon /> : <Sun />}
-            </Button>
+            </Button> */}
             {/* User account */}
             <Button
               variant="ghost"
