@@ -6,8 +6,8 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #89e5f3; /* dark mode primary */
-  --color-secondary: #F59E0B;
+  --color-primary: #f7acac; /* dark mode primary */
+  --color-secondary: #f9b2b3;
   --color-background: #ffffff;
   --color-text: #111827;
 }

@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from "next-themes";
-
+import Image from "next/image";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -26,9 +26,19 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-sky-400">TopShop</h1>
+          <div className="flex items-center gap-2">
+            <Image
+              src="/img/logo.png"
+              alt="logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <h1 className="text-2xl font-bold text-pink-800 leading-none">
+              EMart
+            </h1>
           </div>
+
 
           {/* Desktop Navigation */}
           {/* <nav className="hidden lg:flex space-x-8">
@@ -63,10 +73,10 @@ export default function Header() {
           <div className="hidden md:flex flex-1 max-w-md mx-8">
             <div className="relative w-full">
               <Input
-              type="text"
-              placeholder="Search products..."
-              className="pl-10 pr-4 py-2 w-full"
-            />
+                type="text"
+                placeholder="Search products..."
+                className="pl-10 pr-4 py-2 w-full"
+              />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             </div>
           </div>
@@ -78,7 +88,7 @@ export default function Header() {
               <Search className="h-5 w-5" />
             </Button>
             <Button
-            variant='secondary'
+              variant='secondary'
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2"
             >

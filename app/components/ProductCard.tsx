@@ -39,12 +39,12 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         /> */}
-        <Image
-          src={product.image || "/placeholder.svg"}
-          alt={product.name}
-          width={300}
-          height={300}
-        />
+          <Image
+            src={product.image || "/placeholder.svg"}
+            alt={product.name}
+            width={400}
+            height={300}
+          />
 
         {/* Wishlist Button */}
         <Button
